@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e8eef5;
+      text-align: center;
+    }
+    .calculator {
+      width: 260px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #2c3e50;
+      border-radius: 10px;
+    }
+    h2 {
+      color: white;
+      margin-top: 0;
+    }
+    #display {
+      width: 230px;
+      height: 45px;
+      font-size: 22px;
+      text-align: right;
+      padding: 0 10px;
+      margin-bottom: 15px;
+    }
+    button {
+      width: 55px;
+      height: 50px;
+      margin: 3px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #bdc3c7;
+    }
+    .op {
+      background-color: #f39c12;
+      color: white;
+    }
+    .clear {
+      background-color: #e74c3c;
+      color: white;
+    }
+    .equal {
+      background-color: #27ae60;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="calculator">
+    <h2>Calculator</h2>
+
+    <input type="text" id="display" disabled>
+
+    <div>
+      <button onclick="addToDisplay('7')">7</button>
+      <button onclick="addToDisplay('8')">8</button>
+      <button onclick="addToDisplay('9')">9</button>
+      <button class="op" onclick="addToDisplay('/')">/</button>
+    </div>
+    <div>
+      <button onclick="addToDisplay('4')">4</button>
+      <button onclick="addToDisplay('5')">5</button>
+      <button onclick="addToDisplay('6')">6</button>
+      <button class="op" onclick="addToDisplay('*')">*</button>
+    </div>
+    <div>
+      <button onclick="addToDisplay('1')">1</button>
+      <button onclick="addToDisplay('2')">2</button>
+      <button onclick="addToDisplay('3')">3</button>
+      <button class="op" onclick="addToDisplay('-')">-</button>
+    </div>
+    <div>
+      <button onclick="addToDisplay('0')">0</button>
+      <button onclick="addToDisplay('.')">.</button>
+      <button class="equal" onclick="calculate()">=</button>
+      <button class="op" onclick="addToDisplay('+')">+</button>
+    </div>
+    <div>
+      <button class="clear" onclick="clearDisplay()">C</button>
+      <button class="clear" onclick="deleteLast()">DEL</button>
+    </div>
+  </div>
+
+  <script>
+    // get the display box
+    var display = document.getElementById("display");
+
+    // add number or operator to display
+    function addToDisplay(value) {
+      display.value = display.value + value;
+    }
+
+    // clear everything
+    function clearDisplay() {
+      display.value = "";
+    }
+
+    // delete last character
+    function deleteLast() {
+      display.value = display.value.slice(0, -1);
+    }
+
+    // calculate the answer
+    function calculate() {
+      try {
+        var answer = eval(display.value);
+
+        if (answer === Infinity || answer === -Infinity) {
+          display.value = "Cannot divide by 0";
+        } else {
+          display.value = answer;
+        }
+      } catch (error) {
+        display.value = "Error";
+      }
+    }
+  </script>
+
+</body>
+</html>
